@@ -24,6 +24,9 @@ function App() {
 
 
       <Switch>
+        <Route path='/' exact>
+          <Current/>
+        </Route>
         <Route path='/current'>
           <Current/>
         </Route>
