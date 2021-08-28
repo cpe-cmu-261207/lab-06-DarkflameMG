@@ -3,6 +3,8 @@ import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Current from './components/Current';
 import About from './components/About';
+import Dateselect from './components/Dateselect';
+import Records from './components/Records';
 
 function App() {
   return (
@@ -25,25 +27,19 @@ function App() {
 
       <Switch>
         <Route path='/' exact>
-          <Current/>
+          <Current />
         </Route>
         <Route path='/current'>
-          <Current/>
+          <Current />
         </Route>
         <Route path='/history/select'>
-          {/* template for /history/select */}
-          <div className='text-center space-y-3 space-x-3'>
-            <p className='text-2xl font-semibold'>Select historical range</p>
-            <span>From date</span>
-            <input type='date' onChange={e => console.log(e.target.value)}></input>
-            <span>To date</span>
-            <input type='date' onChange={e => console.log(e.target.value)}></input>
-            <br />
-            <button>Get data</button>
-          </div>
+          <Dateselect />
+        </Route>
+        <Route path='/history/' >
+          <Records/>
         </Route>
         <Route path='/about'>
-          <About/>
+          <About />
         </Route>
       </Switch>
 
