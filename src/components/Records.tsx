@@ -24,7 +24,6 @@ const Records = () => {
             const resp = await axios.get<BitcoinType>(`https://api.coindesk.com/v1/bpi/historical/close.json?currency=THB&start=${start}&end=${end}`)
             setTask(resp.data)
             setLoading(false)
-            console.log(task)
         }
         catch {
             setLoading(false)
@@ -48,9 +47,18 @@ const Records = () => {
             )
         }
         else {
+            let RecordsPrice: [string, number][] = []
+            if (task?.bpi) {
+                RecordsPrice = Object.entries(task.bpi)
+            }
             return (
                 <div className='space-y-3'>
-                    <p>https://api.coindesk.com/v1/bpi/historical/close.json?currency=THB&start={start}&end={end}</p>
+                    <p className='text-xl font-semibold'> ( From {start} To {end} )</p>
+                    <ul>
+                        {
+                            RecordsPrice.map(data => <li className='text-xl' key={data[0]}>{data[0]} - {(data[1]).toLocaleString()} THB</li>)
+                        }
+                    </ul>
                 </div>
             )
         }
